@@ -67,7 +67,7 @@ char	*ft_first_line(char *str1)
 		i++;
 	if (str1[i] == '\n')
 		i++;
-	str = (char *)malloc(sizeof(char) * (i + 1));
+	str = (char *)malloc(i + 1);
 	if (!str)
 		return (NULL);
 	i = -1;

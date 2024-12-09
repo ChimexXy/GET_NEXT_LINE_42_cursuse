@@ -6,11 +6,11 @@ int main() {
     char *line;
 
     fd = open("tt.txt", O_RDONLY);
-   
-    while ((line = get_next_line(fd)) > 0) 
-	{
-        printf("%s", line);
-    }
+
+    printf("%s", get_next_line(fd));
+	printf("%s", get_next_line(fd));
+	printf("%s", get_next_line(fd));
+
 
     close(fd);
     return 0;
