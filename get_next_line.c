@@ -2,26 +2,26 @@
 
 char	*read_str(int fd, char *str)
 {
-	char	*buff;
-	int		readed;
+	char	*ptr;
+	int		i;
 
-	buff = malloc(BUFFER_SIZE + 1);
-	if (!buff)
+	ptr = malloc(BUFFER_SIZE + 1);
+	if (!ptr)
 		return (NULL);
-	readed = 1;
-	while (!new_line(str) && readed != 0)
+	i = 1;
+	while (!new_line(str) && i != 0)
 	{
-		readed = read(fd, buff, BUFFER_SIZE);
-		if (readed == -1)
+		i = read(fd, ptr, BUFFER_SIZE);
+		if (i == -1)
 		{
 			free(str);
-			free(buff);
+			free(ptr);
 			return (NULL);
 		}
-		buff[readed] = '\0';
-		str = ft_strjoin(str, buff);
+		ptr[i] = '\0';
+		str = ft_strjoin(str, ptr);
 	}
-	free(buff);
+	free(ptr);
 	return (str);
 }
 int new_line(char *str)

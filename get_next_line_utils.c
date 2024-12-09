@@ -55,56 +55,56 @@ char	*ft_strjoin(char *s1, char *s2)
 	return (ptr);
 }
 
-char	*ft_first_line(char *first_str)
+char	*ft_first_line(char *str1)
 {
 	int		i;
 	char	*str;
 
 	i = 0;
-	if (!first_str[i])
+	if (!str1[i])
 		return (NULL);
-	while (first_str[i] && first_str[i] != '\n')
+	while (str1[i] && str1[i] != '\n')
 		i++;
-	if (first_str[i] == '\n')
+	if (str1[i] == '\n')
 		i++;
 	str = (char *)malloc(sizeof(char) * (i + 1));
 	if (!str)
 		return (NULL);
 	i = -1;
-	while (first_str[++i] && first_str[i] != '\n')
-		str[i] = first_str[i];
-	if (first_str[i] == '\n')
+	while (str1[++i] && str1[i] != '\n')
+		str[i] = str1[i];
+	if (str1[i] == '\n')
 	{
-		str[i] = first_str[i];
+		str[i] = str1[i];
 		i++;
 	}
 	str[i] = '\0';
 	return (str);
 }
 
-char	*ft_last_line(char *last_str)
+char	*ft_last_line(char *str2)
 {
-	char	*new_str;
+	char	*str;
 	int		i;
 	int		j;
 
 	i = 0;
 	j = 0;
-	while (last_str[i] && last_str[i] != '\n')
+	while (str2[i] && str2[i] != '\n')
 		i++;
-	if (!last_str[i])
+	if (!str2[i])
 	{
-		free(last_str);
+		free(str2);
 		return (NULL);
 	}
-	if (last_str[i] == '\n')
+	if (str2[i] == '\n')
 		i++;
-	new_str = malloc((ft_strlen(last_str) - i) + 1);
-	if (!new_str)
+	str = malloc((ft_strlen(str2) - i) + 1);
+	if (!str)
 		return (NULL);
-	while (last_str[i])
-		new_str[j++] = last_str[i++];
-	new_str[j] = '\0';
-	free(last_str);
-	return (new_str);
+	while (str2[i])
+		str[j++] = str2[i++];
+	str[j] = '\0';
+	free(str2);
+	return (str);
 }
