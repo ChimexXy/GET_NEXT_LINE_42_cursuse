@@ -1,17 +1,9 @@
 #include "get_next_line.h"
-#include <stdio.h>
+#include <fcntl.h>
 
-int main() {
-    int fd;
-    char *line;
+int main()
+{
+	int fd;
 
-    fd = open("tt.txt", O_RDONLY);
-
-    printf("%s", get_next_line(fd));
-	printf("%s", get_next_line(fd));
-	printf("%s", get_next_line(fd));
-
-
-    close(fd);
-    return 0;
+	fd = open("tt.txt", O_RDONLY);
 }
