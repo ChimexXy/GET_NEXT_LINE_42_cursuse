@@ -1,6 +1,6 @@
 #include "get_next_line.h"
 
-char	*read_str(int fd, char *str)
+char	*r_string(int fd, char *str)
 {
 	char	*ptr;
 	int		i;
@@ -47,7 +47,7 @@ char	*get_next_line(int fd)
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (0);
-	str = read_str(fd, str);
+	str = r_string(fd, str);
 	if (!str)
 		return (NULL);
 	ret = ft_first_line(str);

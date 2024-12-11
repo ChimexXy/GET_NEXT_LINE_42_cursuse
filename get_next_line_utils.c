@@ -16,6 +16,8 @@ char	*ft_strdup(char *s1)
 	size_t	i;
 	char	*ptr;
 
+	if (!s1)
+		return NULL;
 	i = 0;
 	ptr = malloc(ft_strlen(s1) + 1);
 	if (!ptr)
@@ -72,7 +74,7 @@ char	*ft_first_line(char *str1)
 		return (NULL);
 	i = -1;
 	while (str1[++i] && str1[i] != '\n')
-		str[i] = str1[i];
+		str[i] = str1[i]; 
 	if (str1[i] == '\n')
 	{
 		str[i] = str1[i];

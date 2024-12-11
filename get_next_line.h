@@ -10,7 +10,7 @@
 #include <fcntl.h>
 
 char *get_next_line(int fd);
-char	*read_str(int fd, char *str);
+char	*r_string(int fd, char *str);
 int ft_strlen(char *str);
 char	*ft_strjoin(char *s1, char *s2);
 int new_line(char *str);
