@@ -2,111 +2,78 @@
 
 int ft_strlen(char *str)
 {
-	int	i;
+	int i;
 
 	i = 0;
 	if (!str)
-		return (0);
-	while (str[i])
+		return 0;
+	while(str[i])
 		i++;
 	return (i);
 }
-char	*ft_strdup(char *s1)
-{
-	size_t	i;
-	char	*ptr;
 
-	if (!s1)
+char *ft_strdup(char *s)
+{
+	int i;
+	int j;
+	char *ret;
+
+	if (!s)
 		return NULL;
 	i = 0;
-	ptr = malloc(ft_strlen(s1) + 1);
-	if (!ptr)
+	j = 0;
+	ret = malloc(ft_strlen(s) + 1);
+	if (!ret)
 		return (NULL);
-	while (s1[i])
-	{
-		ptr[i] = s1[i];
-		i++;
-	}
-	ptr[i] = '\0';
-	return (ptr);
+	while (s[i])
+		ret[j++] = s[i++];
+	ret[j] = '\0';
+	return (ret);
 }
 
-char	*ft_strjoin(char *s1, char *s2)
+char *ft_strjoin(char *s1, char *s2)
 {
-	size_t	i;
-	size_t	j;
-	size_t	m;
-	char	*ptr;
+	int i;
+	int j;
+	int k;
+	char *ret;
 
 	if (!s1)
-		return (ft_strdup(s2));
+		return(ft_strdup(s2));
 	if (!s2)
 		return (ft_strdup(s1));
 	i = 0;
 	j = 0;
-	m = 0;
-	ptr = malloc(ft_strlen(s1) + ft_strlen(s2) + 1);
-	if (!ptr)
+	k = 0;
+	ret = malloc(ft_strlen(s1) + ft_strlen(s2) + 1);
+	if (!ret)
 		return (NULL);
 	while (s1[i])
-		ptr[m++] = s1[i++];
-	while (s2[j])
-		ptr[m++] = s2[j++];
-	ptr[m] = '\0';
-	free(s1);
-	return (ptr);
+		ret[k++] = s1[i++];
+	while(s2[j])
+		ret[k++] = s2[j++];
+	ret[k] = '\0';
+	return (ret);
 }
 
-char	*ft_first_line(char *str1)
+char *ft_substr(char *string, int start, int len)
 {
-	int		i;
-	char	*str;
+	int i;
+	int j;
+	char *ret;
 
-	i = 0;
-	if (!str1[i])
-		return (NULL);
-	while (str1[i] && str1[i] != '\n')
-		i++;
-	if (str1[i] == '\n')
-		i++;
-	str = (char *)malloc(i + 1);
-	if (!str)
-		return (NULL);
-	i = -1;
-	while (str1[++i] && str1[i] != '\n')
-		str[i] = str1[i]; 
-	if (str1[i] == '\n')
-	{
-		str[i] = str1[i];
-		i++;
-	}
-	str[i] = '\0';
-	return (str);
-}
-
-char	*ft_last_line(char *str2)
-{
-	char	*str;
-	int		i;
-	int		j;
-
-	i = 0;
+	if (!string)
+		return (ft_strdup(0));
+	i = start;
 	j = 0;
-	while (str2[i] && str2[i] != '\n')
-		i++;
-	if (!str2[i])
+	ret = malloc(len + 1);
+	if (!ret)
+		return (NULL);
+	while (len > 0 && string[i])
 	{
-		free(str2);
-		return (NULL);
+		ret[j++] = string[i++];
+		len--;
 	}
-	if (str2[i] == '\n')
-		i++;
-	str = malloc((ft_strlen(str2) - i) + 1);
-	if (!str)
-		return (NULL);
-	while (str2[i])
-		str[j++] = str2[i++];
-	str[j] = '\0';
-	free(str2);
-	return (str);
+	ret[j] = '\0';
+	return (ret);
 }
