@@ -2,7 +2,7 @@
 #define GET_NEXT_LINE_H
 
 #ifndef BUFFER_SIZE
-#define BUFFER_SIZE 4
+#define BUFFER_SIZE 10
 
 #endif
 
@@ -17,7 +17,7 @@ char *ft_substr(char *string, int start, int len);
 int ft_find_new_line(char *str);
 char *ft_read_string(int fd, char *ret);
 char *ft_ret_line(char *line);
-
+char *ft_remind_val(char *string);
 
 
 #endif

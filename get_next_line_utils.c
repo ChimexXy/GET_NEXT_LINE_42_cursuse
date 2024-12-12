@@ -63,7 +63,7 @@ char *ft_substr(char *string, int start, int len)
 	char *ret;
 
 	if (!string)
-		return (ft_strdup(0));
+		return (ft_strdup(""));
 	i = start;
 	j = 0;
 	ret = malloc(len + 1);

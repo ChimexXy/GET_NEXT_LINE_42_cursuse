@@ -8,6 +8,8 @@ int ft_find_new_line(char *str)
 	int i;
 
 	i = 0;
+	if (!str)
+		return (0);
 	while (str[i])
 	{
 		if (str[i] == '\n')
@@ -42,13 +44,14 @@ char *ft_read_string(int fd, char *ret)
         if (!ft_find_new_line(ret))
             break;
     }
-    free(buffer); 
+    free(buffer);
     return ret;
 }
 
 char *ft_ret_line(char *line)
 {
 	int i;
+
 	i = 0;
 	if (!line || ft_strlen(line) == 0)
 		return NULL;
@@ -60,66 +63,65 @@ char *ft_ret_line(char *line)
 }
 
 
-char *rest_func(char *string)
+char *ft_remind_val(char *string)
 {
-    int i = 0, j = 0;
-    char *temp;
+    int i;
+    int j;
+    char *ptr;
 
     if (!string)
         return NULL;
+	i = 0;
+	j = 0;
     while (string[i] != '\n' && string[i] != '\0')
         i++;
     if (string[i] == '\n')
         i++;
     if (string[i] == '\0')
-    {
-        free(string);
-        return NULL;
-    }
-    temp = malloc(ft_strlen(string) - i + 1);
-    if (!temp)
-        return NULL;
+		return (free(string), string = NULL, NULL);
+    ptr = malloc(ft_strlen(string) - i + 1);
+    if (!ptr)
+		return (free(string), string = NULL, NULL);
     while (string[i])
-        temp[j++] = string[i++];
-    temp[j] = '\0';
-    free(string);
-    return temp;
+        ptr[j++] = string[i++];
+    ptr[j] = '\0';
+	return (free(string), string = NULL, ptr);
 }
-
 
 char *get_next_line(int fd)
 {
     static char *string;
     char *line;
 
-    if (fd < 0 || BUFFER_SIZE <= 0)
-        return NULL;
+    if (fd < 0 || BUFFER_SIZE <= 0 || read(fd,0,0) < 0)
+        return (free(string), string = NULL, NULL);
 
     string = ft_read_string(fd, string);
     if (!string)
         return NULL;
-
     line = ft_ret_line(string);
-    string = rest_func(string);
-    return line;
+	if(!line)
+		return(free(string), string = NULL, NULL);
+    string = ft_remind_val(string);
+    return (line);
 }
 
 
 
-int main()
-{
-	int fd;
-	int f;
-	char *str;
+// int main()
+// {
+// 	int fd;
+// 	int f;
+// 	char *str;
 
-	fd = open("test.txt", O_RDONLY);
+// 	fd = open("test.txt", O_RDONLY);
 
-	printf("%s", get_next_line(fd));
-	printf("%s", get_next_line(fd));
-	printf("%s", get_next_line(fd));
-	printf("%s", get_next_line(fd));
-	// printf("%s", ft_read_string(fd)); 
+// 	printf("%s", get_next_line(fd));
+// 	printf("%s", get_next_line(fd));
+// 	printf("%s", get_next_line(fd));
+// 	printf("%s", get_next_line(fd));
+// 	// printf("%s", ft_read_string(fd)); 
 
-	close(fd);
-	system("leaks a.out");
-}
+// 	close(fd);
+// 	system("leaks a.out");
+// }
