@@ -45,7 +45,7 @@ char *ft_read_string(int fd, char *ret)
             break;
     }
     free(buffer);
-    return ret;
+    return (ret);
 }
 
 char *ft_ret_line(char *line)
@@ -78,14 +78,15 @@ char *ft_remind_val(char *string)
     if (string[i] == '\n')
         i++;
     if (string[i] == '\0')
-		return (free(string), string = NULL, NULL);
+		return (NULL);
     ptr = malloc(ft_strlen(string) - i + 1);
     if (!ptr)
-		return (free(string), string = NULL, NULL);
+		return (NULL);
     while (string[i])
         ptr[j++] = string[i++];
     ptr[j] = '\0';
-	return (free(string), string = NULL, ptr);
+	free(string);
+	return (ptr);
 }
 
 char *get_next_line(int fd)
@@ -93,35 +94,33 @@ char *get_next_line(int fd)
     static char *string;
     char *line;
 
-    if (fd < 0 || BUFFER_SIZE <= 0 || read(fd,0,0) < 0)
-        return (free(string), string = NULL, NULL);
+    if (fd < 0 || BUFFER_SIZE <= 0)
+        return (NULL);
 
     string = ft_read_string(fd, string);
     if (!string)
         return NULL;
     line = ft_ret_line(string);
-	if(!line)
-		return(free(string), string = NULL, NULL);
     string = ft_remind_val(string);
     return (line);
 }
 
 
 
-// int main()
-// {
-// 	int fd;
-// 	int f;
-// 	char *str;
+int main()
+{
+	int fd;
+	int f;
+	char *str;
 
-// 	fd = open("test.txt", O_RDONLY);
+	fd = open("test.txt", O_RDONLY);
 
-// 	printf("%s", get_next_line(fd));
-// 	printf("%s", get_next_line(fd));
-// 	printf("%s", get_next_line(fd));
-// 	printf("%s", get_next_line(fd));
-// 	// printf("%s", ft_read_string(fd)); 
+	printf("---> %s", get_next_line(fd));
+	printf("---> %s", get_next_line(fd));
+	printf("---> %s", get_next_line(fd));
+	printf("---> %s", get_next_line(fd));
+	// printf("%s", ft_read_string(fd)); 
 
-// 	close(fd);
-// 	system("leaks a.out");
-// }
+	close(fd);
+	system("leaks a.out");
+}
