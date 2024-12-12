@@ -100,7 +100,7 @@ char *get_next_line(int fd)
     string = ft_read_string(fd, string);
     if (!string)
         return NULL;
-    line = ft_ret_line(string);
+    line = ft_ret_line(string);	
     string = ft_remind_val(string);
     return (line);
 }

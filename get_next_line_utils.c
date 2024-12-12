@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mozahnou <mozahnou@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/12/12 17:59:50 by mozahnou          #+#    #+#             */
+/*   Updated: 2024/12/12 18:01:11 by mozahnou         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "get_next_line.h"
 
 int ft_strlen(char *str)
@@ -6,7 +18,7 @@ int ft_strlen(char *str)
 
 	i = 0;
 	if (!str)
-		return 0;
+		return (0);
 	while(str[i])
 		i++;
 	return (i);
