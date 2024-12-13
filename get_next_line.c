@@ -24,7 +24,6 @@ char *ft_read_string(int fd, char *ret)
 {
     int     j;
     char    *buffer;
-    char    *hold;
 
     buffer = malloc(BUFFER_SIZE + 1);
     if (!buffer)
@@ -32,15 +31,13 @@ char *ft_read_string(int fd, char *ret)
     while ((j = read(fd, buffer, BUFFER_SIZE)) > 0)
     {
         buffer[j] = '\0';
-        hold = ft_strjoin(ret, buffer);
-        if (!hold)
+        ret = ft_strjoin(ret, buffer);
+        if (!ret)
         {
             free(ret);
             free(buffer); 
             return NULL;
         }
-        free(ret);
-        ret = hold;
         if (!ft_find_new_line(ret))
             break;
     }
@@ -78,7 +75,7 @@ char *ft_remind_val(char *string)
     if (string[i] == '\n')
         i++;
     if (string[i] == '\0')
-		return (NULL);
+		return (free(string), NULL);
     ptr = malloc(ft_strlen(string) - i + 1);
     if (!ptr)
 		return (NULL);
@@ -94,10 +91,14 @@ char *get_next_line(int fd)
     static char *string;
     char *line;
 
-    if (fd < 0 || BUFFER_SIZE <= 0)
+    if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) == -1)
+    {
+        free(string);
+        string = NULL;
         return (NULL);
-
+    }
     string = ft_read_string(fd, string);
+
     if (!string)
         return NULL;
     line = ft_ret_line(string);	
@@ -107,20 +108,12 @@ char *get_next_line(int fd)
 
 
 
-int main()
-{
-	int fd;
-	int f;
-	char *str;
-
-	fd = open("test.txt", O_RDONLY);
-
-	printf("---> %s", get_next_line(fd));
-	printf("---> %s", get_next_line(fd));
-	printf("---> %s", get_next_line(fd));
-	printf("---> %s", get_next_line(fd));
-	// printf("%s", ft_read_string(fd)); 
-
-	close(fd);
-	system("leaks a.out");
-}
+// int main()
+// {
+// 	int fd;
+// 	int f;
+// 	fd = open("test.txt", O_RDONLY);
+// 	printf("---> %s", get_next_line(-1));
+//     system("leaks -q a.out");
+// 	close(fd);
+// }

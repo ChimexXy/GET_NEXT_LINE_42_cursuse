@@ -43,8 +43,6 @@ char *ft_strdup(char *s)
 	return (ret);
 }
 
-#include <stdio.h>
-
 char *ft_strjoin(char *s1, char *s2)
 {
 	int i;	
