@@ -1,37 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*   get_next_line_utils_bonus.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mozahnou <mozahnou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/12 17:59:50 by mozahnou          #+#    #+#             */
-/*   Updated: 2024/12/12 18:01:11 by mozahnou         ###   ########.fr       */
+/*   Created: 2024/12/13 20:10:35 by mozahnou          #+#    #+#             */
+/*   Updated: 2024/12/13 20:40:34 by mozahnou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
-int ft_strlen(char *str)
+int	ft_strlen(char *str)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	if (!str)
 		return (0);
-	while(str[i])
+	while (str[i])
 		i++;
 	return (i);
 }
 
-char *ft_strdup(char *s)
+char	*ft_strdup(char *s)
 {
-	int i;
-	int j;
-	char *ret;
+	int		i;
+	int		j;
+	char	*ret;
 
 	if (!s)
-		return NULL;
+		return (NULL);
 	i = 0;
 	j = 0;
 	ret = malloc(ft_strlen(s) + 1);
@@ -43,15 +43,15 @@ char *ft_strdup(char *s)
 	return (ret);
 }
 
-char *ft_strjoin(char *s1, char *s2)
+char	*ft_strjoin(char *s1, char *s2)
 {
-	int i;	
-	int j;
-	int k;
-	char *ret;
+	int		i;	
+	int		j;
+	int		k;
+	char	*ret;
 
 	if (!s1)
-		return(ft_strdup(s2));
+		return (ft_strdup(s2));
 	if (!s2)
 		return (ft_strdup(s1));
 	i = 0;
@@ -62,7 +62,7 @@ char *ft_strjoin(char *s1, char *s2)
 		return (NULL);
 	while (s1[i])
 		ret[k++] = s1[i++];
-	while(s2[j])
+	while (s2[j])
 		ret[k++] = s2[j++];
 	ret[k] = '\0';
 	free(s1);
@@ -70,11 +70,11 @@ char *ft_strjoin(char *s1, char *s2)
 	return (ret);
 }
 
-char *ft_substr(char *string, int start, int len)
+char	*ft_substr(char *string, int start, int len)
 {
-	int i;
-	int j;
-	char *ret;
+	int		i;
+	int		j;
+	char	*ret;
 
 	if (!string)
 		return (ft_strdup(""));
