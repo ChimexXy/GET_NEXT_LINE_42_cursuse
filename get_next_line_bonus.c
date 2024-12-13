@@ -14,6 +14,7 @@
 #include <stdio.h>
 #include <fcntl.h>
 #include <string.h>
+#include <limits.h>
 
 int ft_find_new_line(char *str)
 {
