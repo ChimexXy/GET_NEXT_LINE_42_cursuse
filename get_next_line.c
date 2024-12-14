@@ -6,7 +6,7 @@
 /*   By: mozahnou <mozahnou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 20:11:11 by mozahnou          #+#    #+#             */
-/*   Updated: 2024/12/13 20:30:15 by mozahnou         ###   ########.fr       */
+/*   Updated: 2024/12/14 13:55:49 by mozahnou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,10 @@ char	*ft_remind_val(char *string)
 	if (string[i] == '\n')
 		i++;
 	if (string[i] == '\0')
-		return (free(string), NULL);
+	{
+		free(string);
+		return (NULL);
+	}
 	ptr = malloc(ft_strlen(string) - i + 1);
 	if (!ptr)
 		return (NULL);
@@ -113,13 +116,16 @@ char	*get_next_line(int fd)
 	string = ft_remind_val(string);
 	return (line);
 }
-
-// int main()
-// {
-// 	int fd;
-// 	int f;
-// 	fd = open("test.txt", O_RDONLY);
-// 	printf("---> %s", get_next_line(-1));
-//     system("leaks -q a.out");
-// 	close(fd);
-// }
+#include <fcntl.h>
+#include <stdio.h>
+int main()
+{
+	int fd;
+	int i = 0;
+	fd = open("test.txt", O_RDONLY);
+	
+		char *str = get_next_line(3);
+		printf("---> %s", str);
+	close(fd);
+    system("leaks -q a.out");
+}
