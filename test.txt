@@ -1,4 +1,0 @@
-42network
-hello world
-don't give up
-i'm the best
